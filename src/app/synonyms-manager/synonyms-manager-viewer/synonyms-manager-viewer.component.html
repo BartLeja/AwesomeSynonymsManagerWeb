@@ -1,0 +1,8 @@
+<mat-card *ngFor="let word of words" class="word-card">
+  <div>
+   <p>{{word.term}}</p> 
+    <mat-chip-list>
+      <mat-chip  *ngFor="let synonym of word.synonyms" color="primary" selected>  {{synonym}}</mat-chip>
+    </mat-chip-list>
+  </div>
+</mat-card>

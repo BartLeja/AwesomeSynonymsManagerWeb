@@ -1,0 +1,31 @@
+<div mat-dialog-content>
+  <mat-form-field appearance="legacy" class="mat-form">
+    <mat-label>Add word</mat-label>
+    <input matInput [(ngModel)]="term">
+  </mat-form-field>
+
+  <mat-form-field class="chip-list">
+    <mat-chip-list #chipList >
+      <mat-chip
+        *ngFor="let synonym of synonyms"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(synonym)">
+        {{synonym}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="New synonym..."
+        #synonymInput
+        [formControl]="synonymCtrl"
+      
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button (click)="addWord()" cdkFocusInitial >Add word</button>
+</div>
